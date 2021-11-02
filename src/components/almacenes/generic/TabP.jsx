@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CAlmacenes from '../CAlmacen';
+import CoAlmacenes from '../CoAlmacenes';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -56,7 +57,7 @@ export default function TabP() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Consultar almacenes
+        <CoAlmacenes/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <CAlmacenes/>
