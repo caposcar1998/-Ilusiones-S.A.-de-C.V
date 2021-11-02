@@ -16,7 +16,7 @@ export default function Login() {
     }
 
     return(
-        
+        <Grid className={"header"} >
         <Box
         sx={{
             width: 500,
@@ -43,7 +43,7 @@ export default function Login() {
             </Grid>
         </Paper>
       </Box>
-
+      </Grid>
           
       
           
