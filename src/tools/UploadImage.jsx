@@ -5,8 +5,8 @@ const REGION ='us-west-2';
 
 
 AWS.config.update({
-    accessKeyId: 'x',
-    secretAccessKey: 'x'
+    accessKeyId: 'AKIAW6IEQO6AJN7JOGSM',
+    secretAccessKey: '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'
 })
 
 const myBucket = new AWS.S3({
@@ -16,7 +16,7 @@ const myBucket = new AWS.S3({
 
 
 export async function uploadFile(file)  {
-
+    
     const params = {
         ACL: 'public-read',
         Body: file,

@@ -19,13 +19,27 @@ export default function Compras() {
     function subirArchivo(){
         
         uploadFile(archivo).then(res =>{
+            console.log(archivo["name"])
+            crearOrdenes(archivo["name"])
             setOpen(true)
             setMensaje("Se sube el archivo")
             setTimeout(() => {
                 setOpen(false)
               }, 3000);
+        }).catch(e =>{
+            setOpen(true)
+            setMensaje("Error al subir el archivo")
+            setTimeout(() => {
+                setOpen(false)
+              }, 3000);    
         })
 
+    }
+
+    function crearOrdenes(nombreOrden){
+
+        axios.post(url+"/ordenes",nombreOrden).then(res => console.log(res))
+        
     }
 
     const handleClose = () => {
@@ -34,7 +48,7 @@ export default function Compras() {
 
     return(
         <>
-        <Snack open={open} handleClose={handleClose} mensaje="Creado con exito"/>
+        <Snack open={open} handleClose={handleClose} mensaje={mensaje}/>
         <Grid container className={"head"} alignItems="center"justifyContent="center">
             <Grid item xs={12}>
                 <Typography variant="h3">Deja tu archivo de compra</Typography>
