@@ -5,8 +5,8 @@ const REGION ='us-west-2';
 
 
 AWS.config.update({
-    accessKeyId: 'AKIAW6IEQO6ADLYOHQGI',
-    secretAccessKey: '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'
+    accessKeyId: 'x',
+    secretAccessKey: 'x'
 })
 
 const myBucket = new AWS.S3({
@@ -26,7 +26,7 @@ export async function uploadFile(file)  {
 
     myBucket.putObject(params)
         .on('httpUploadProgress', (evt) => {
-            console.log("Se crea")
+            console.log(evt)
         })
         .send((err) => {
             if (err) console.log(err)
