@@ -15,6 +15,7 @@ export default function Home() {
 
     return(
         <>
+        <h1>.</h1>
             <Grid container spacing={4} >
                 <Grid item xs={6}>
                     <Grid container   alignItems="center"justifyContent="center">
@@ -23,7 +24,7 @@ export default function Home() {
                 </Grid>
                 <Grid item xs={6}>
                     <Grid container   alignItems="center"justifyContent="center">
-                        <CardOne imagen={urlFoto+"oc2.jpg"} titulo="Ordenes compra" descripcion="Aqui podras realizar tus operaciones CRUD de las ordenes de compra" accion={() => redireccionar("/")} boton= "Ir"/>
+                        <CardOne imagen={urlFoto+"oc2.jpg"} titulo="Ordenes compra" descripcion="Aqui podras realizar tus operaciones CRUD de las ordenes de compra" accion={() => redireccionar("/compras")} boton= "Ir"/>
                     </Grid>
                 </Grid>
                 <Grid item xs={6}>  
