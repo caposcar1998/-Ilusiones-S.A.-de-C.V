@@ -10,18 +10,28 @@ import os
 def handler(event, context):
     nombre_archivo = event["body"]
 
-    obtener_archivo_s3(nombre_archivo)
-    
-    
-    return {
-      'statusCode': 200,
-      'headers': {
+    res = revisar_archivo(nombre_archivo)
+
+    if (res == True):
+        obtener_archivo_s3(nombre_archivo)
+        return {
+        'statusCode': 200,
+        'headers': {
           'Access-Control-Allow-Headers': '*',
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
-      },
-      'body': json.dumps('Hello from your new Amplify Python lambda!')
-    }
+            },
+        'body': json.dumps('Se sube de forma correcta')}
+    else:
+        return {
+        'statusCode': 404,
+        'headers': {
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+        },
+        'body': "Archivo no valido"
+        }
 
 def obtener_archivo_s3(nombre_archivo):
     client = boto3.client('s3')
@@ -45,7 +55,7 @@ def obtener_archivo_s3(nombre_archivo):
                 workbook = Workbook()
                 sheet = workbook.active
                 sheet["A1"] = f"Orden de compra de:{cell.value}"
-
+                res = buscar_base_datos(cell.value)
 
             elif(column == 2):
                 sheet["A2"] = f"Cliente :{cell.value}"
@@ -57,15 +67,54 @@ def obtener_archivo_s3(nombre_archivo):
                     sheet.cell(column=6, row=sheet.max_row+1, value=cell.value)             
             column = column + 1   
 
+        if(res == True):
+            workbook.save(filename="/tmp/"+titulo+".xlsx")
+            try:
+                upload_file(("/tmp/"+titulo+".xlsx"),"m2crowdoscar","ordenes/ordenesFinales/"+titulo+".xlsx")
+            except:
+                pass
+        else:
+            logging.error("No encontrado en la base de datos")
+        
 
-        workbook.save(filename="/tmp/"+titulo+".xlsx")
-        try:
-            upload_file(("/tmp/"+titulo+".xlsx"),"m2crowdoscar","ordenes/ordenesFinales/"+titulo+".xlsx")
-        except Exception as e:
-            print(e)
 
 def upload_file(file_name, bucket, object_name=None):
 
     s3 = boto3.client('s3')
     with open(file_name, "rb") as f:
         s3.upload_fileobj(f, bucket, object_name)
+
+def revisar_archivo(nombre_archivo):
+    client = boto3.client('s3')
+
+    res = client.get_object(
+        Bucket = "m2crowdoscar",
+        Key="ordenes/"+nombre_archivo
+    )
+
+    binary_data = res['Body'].read()
+    wb = openpyxl.load_workbook(BytesIO(binary_data),data_only=True)
+    sheet = wb.active
+    first_row = sheet[1]
+    ans = False
+    if (first_row[0].value == "Sub inventario" and first_row[1].value == "PDV"):
+        ans = True
+
+    return ans
+
+def buscar_base_datos(subinventario):
+    client = boto3.client('dynamodb')
+    exist_file = False
+    response = client.get_item(
+        TableName="Almacenes",
+        Key={
+            "sub_inventario":{"S":subinventario} 
+        }
+    )
+    try:
+        res = response["Item"]
+        exist_file = True
+    except:
+        exist_file = False        
+
+    return exist_file
