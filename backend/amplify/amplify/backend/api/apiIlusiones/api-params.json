@@ -23,6 +23,14 @@
                 "open": true
             },
             "policyResourceName": "/ordenes"
+        },
+        {
+            "name": "/recepcion",
+            "lambdaFunction": "recepcionmercancia",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/recepcion"
         }
     ],
     "resourceName": "apiIlusiones",
@@ -36,6 +44,9 @@
         },
         {
             "lambdaFunction": "crearOrdenCompra"
+        },
+        {
+            "lambdaFunction": "recepcionmercancia"
         }
     ],
     "privacy": {
@@ -68,7 +79,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "recepcionmercancia",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "8dc1ab27"
+    "uuid": "7c47edd1"
 }
