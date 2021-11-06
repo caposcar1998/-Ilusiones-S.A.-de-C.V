@@ -4,6 +4,8 @@ import boto3
 from botocore.exceptions import ClientError
 from openpyxl import Workbook
 import openpyxl
+import logging
+import os
 
 def handler(event, context):
     nombre_archivo = event["body"]
@@ -39,8 +41,6 @@ def obtener_archivo_s3(nombre_archivo):
         titulo = ""
         for cell in row:
             if(column == 1):
-                print("Columna",sheet.cell(row=1, column=column).value)
-                print("_Id", cell.value)
                 titulo = cell.value
                 workbook = Workbook()
                 sheet = workbook.active
@@ -48,22 +48,24 @@ def obtener_archivo_s3(nombre_archivo):
 
 
             elif(column == 2):
-                print("Columna",sheet.cell(row=1, column=column).value)
-                print("Titulo", cell.value)
                 sheet["A2"] = f"Cliente :{cell.value}"
             else:
 
 
                 if((cell.value != None)):
-                    print("Celular",ref.cell(row=1, column=column).value)
-                    print("Numero de celulares", cell.value) 
                     sheet.cell(column=5, row=sheet.max_row+1, value=str(ref.cell(row=1, column=column).value))
                     sheet.cell(column=6, row=sheet.max_row+1, value=cell.value)             
             column = column + 1   
 
 
-        print()
-        workbook.save(filename="archivos/"+titulo+".xlsx")
+        workbook.save(filename="/tmp/"+titulo+".xlsx")
+        try:
+            upload_file(("/tmp/"+titulo+".xlsx"),"m2crowdoscar","ordenes/ordenesFinales/"+titulo+".xlsx")
+        except Exception as e:
+            print(e)
 
+def upload_file(file_name, bucket, object_name=None):
 
-
+    s3 = boto3.client('s3')
+    with open(file_name, "rb") as f:
+        s3.upload_fileobj(f, bucket, object_name)
