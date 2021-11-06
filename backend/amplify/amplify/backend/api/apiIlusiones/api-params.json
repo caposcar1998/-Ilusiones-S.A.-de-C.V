@@ -1,0 +1,74 @@
+{
+    "paths": [
+        {
+            "name": "/almacen",
+            "lambdaFunction": "crearAlmacen",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/almacen"
+        },
+        {
+            "name": "/almacenes/lista",
+            "lambdaFunction": "todosLayouts",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/almacenes/lista"
+        },
+        {
+            "name": "/ordenes",
+            "lambdaFunction": "crearOrdenCompra",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/ordenes"
+        }
+    ],
+    "resourceName": "apiIlusiones",
+    "apiName": "apiIlusiones",
+    "functionArns": [
+        {
+            "lambdaFunction": "crearAlmacen"
+        },
+        {
+            "lambdaFunction": "todosLayouts"
+        },
+        {
+            "lambdaFunction": "crearOrdenCompra"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-amplify571baa093c814-staging-04738-authRole",
+        "unAuthRoleName": "amplify-amplify571baa093c814-staging-04738-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "crearAlmacen",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "todosLayouts",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "crearOrdenCompra",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "8dc1ab27"
+}

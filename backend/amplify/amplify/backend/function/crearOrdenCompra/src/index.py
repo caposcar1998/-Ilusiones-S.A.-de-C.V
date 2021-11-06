@@ -1,0 +1,120 @@
+from io import BytesIO
+import json
+import boto3
+from botocore.exceptions import ClientError
+from openpyxl import Workbook
+import openpyxl
+import logging
+import os
+
+def handler(event, context):
+    nombre_archivo = event["body"]
+
+    res = revisar_archivo(nombre_archivo)
+
+    if (res == True):
+        obtener_archivo_s3(nombre_archivo)
+        return {
+        'statusCode': 200,
+        'headers': {
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+            },
+        'body': json.dumps('Se sube de forma correcta')}
+    else:
+        return {
+        'statusCode': 404,
+        'headers': {
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+        },
+        'body': "Archivo no valido"
+        }
+
+def obtener_archivo_s3(nombre_archivo):
+    client = boto3.client('s3')
+
+    res = client.get_object(
+        Bucket = "m2crowdoscar",
+        Key="ordenes/"+nombre_archivo
+    )
+
+
+    binary_data = res['Body'].read()
+    wb = openpyxl.load_workbook(BytesIO(binary_data),data_only=True)
+    ref = wb.active
+    sheet = wb.active
+    for row in sheet.iter_rows():
+        column = 1
+        titulo = ""
+        for cell in row:
+            if(column == 1):
+                titulo = cell.value
+                workbook = Workbook()
+                sheet = workbook.active
+                sheet["A1"] = f"Orden de compra de:{cell.value}"
+                res = buscar_base_datos(cell.value)
+
+            elif(column == 2):
+                sheet["A2"] = f"Cliente :{cell.value}"
+            else:
+
+
+                if((cell.value != None)):
+                    sheet.cell(column=5, row=sheet.max_row+1, value=str(ref.cell(row=1, column=column).value))
+                    sheet.cell(column=6, row=sheet.max_row+1, value=cell.value)             
+            column = column + 1   
+
+        if(res == True):
+            workbook.save(filename="/tmp/"+titulo+".xlsx")
+            try:
+                upload_file(("/tmp/"+titulo+".xlsx"),"m2crowdoscar","ordenes/ordenesFinales/"+titulo+".xlsx")
+            except:
+                pass
+        else:
+            logging.error("No encontrado en la base de datos")
+        
+
+
+def upload_file(file_name, bucket, object_name=None):
+
+    s3 = boto3.client('s3')
+    with open(file_name, "rb") as f:
+        s3.upload_fileobj(f, bucket, object_name)
+
+def revisar_archivo(nombre_archivo):
+    client = boto3.client('s3')
+
+    res = client.get_object(
+        Bucket = "m2crowdoscar",
+        Key="ordenes/"+nombre_archivo
+    )
+
+    binary_data = res['Body'].read()
+    wb = openpyxl.load_workbook(BytesIO(binary_data),data_only=True)
+    sheet = wb.active
+    first_row = sheet[1]
+    ans = False
+    if (first_row[0].value == "Sub inventario" and first_row[1].value == "PDV"):
+        ans = True
+
+    return ans
+
+def buscar_base_datos(subinventario):
+    client = boto3.client('dynamodb')
+    exist_file = False
+    response = client.get_item(
+        TableName="Almacenes",
+        Key={
+            "sub_inventario":{"S":subinventario} 
+        }
+    )
+    try:
+        res = response["Item"]
+        exist_file = True
+    except:
+        exist_file = False        
+
+    return exist_file
