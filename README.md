@@ -3,6 +3,15 @@
 La empresa Ilusiones S.A. de C.V. vende equipos celulares y necesita realizar compras de mercancía
 a través de 2 archivos. Este sistema busca resolver la problematica de esta empresa.
 
+
+## Instalando el proyecto
+
+- [AmplifyCli](https://docs.amplify.aws/cli/start/install/)
+- [Python 3.8](https://www.python.org/downloads/)
+- [React](https://es.reactjs.org/)
+
+
+
 ## Stack 
 
 - DybamoDB : Base de datos no relacional
@@ -20,25 +29,38 @@ a través de 2 archivos. Este sistema busca resolver la problematica de esta emp
 
 In the project directory, you can run:
 
+
+### `amplify status`
+
+revisa el status de tu stack
+
+### `amplify pull`
+
+Recupera el stack del backend en tu local
+
+
+### `amplify add function`
+
+Anade una función tipo lambda al stack
+
+
+### `amplify add api`
+
+Anade una API y/o anade endpoints
+
+
+### `amplify push`
+
+Sube tu actualización del stack a la nube de AWS
+
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Usa el proyecto en modo desarrollo
+Abre [http://localhost:3000](http://localhost:3000) en cualquier navegador
 
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
