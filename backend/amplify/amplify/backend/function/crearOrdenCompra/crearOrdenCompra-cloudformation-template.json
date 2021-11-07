@@ -167,6 +167,13 @@
                 "s3:*"
               ],
               "Resource": "*"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:*"
+              ],
+              "Resource": "*"
             }
           ]
         }

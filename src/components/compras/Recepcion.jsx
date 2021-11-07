@@ -20,7 +20,7 @@ export default function Recepcion() {
         
         uploadFile(archivo).then(res =>{
             console.log(archivo["name"])
-            crearOrdenes(archivo["name"])
+            recepcionPedidos(archivo["name"])
             setOpen(true)
             setMensaje("Se sube el archivo")
             setTimeout(() => {
@@ -36,9 +36,9 @@ export default function Recepcion() {
 
     }
 
-    function crearOrdenes(nombreOrden){
+    function recepcionPedidos(nombreOrden){
 
-        axios.post(url+"/ordenes",nombreOrden).then(res => console.log(res))
+        axios.post(url+"/recepcion",nombreOrden).then(res => console.log(res))
         
     }
 
