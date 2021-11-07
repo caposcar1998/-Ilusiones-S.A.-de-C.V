@@ -44,8 +44,8 @@ def insertar_a_almacenes(client,nombre,subinventario):
         Item={
             "nombre":{"S":nombre},
             "sub_inventario":{"S":subinventario},
-            "ordenes":{"BS":{}},
-            "inventario":{"BS":{}}
+            "ordenes":{"L":[]},
+            "inventario":{"L":[]}
 
         }
         )
