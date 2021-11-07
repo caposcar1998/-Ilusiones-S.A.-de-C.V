@@ -4,7 +4,7 @@ import {uploadFile} from "../../tools/UploadImage"
 import Snack from '../generic/Snack';
 import axios from 'axios';
 
-const url = 'https://81zuqkns90.execute-api.us-west-2.amazonaws.com/staging'
+const url = process.env.REACT_APP_URL_PROJECT
 
 export default function Recepcion() {
 
