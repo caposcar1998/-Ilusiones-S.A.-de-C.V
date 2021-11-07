@@ -6,6 +6,7 @@ from openpyxl import Workbook
 import openpyxl
 import logging
 import os
+from datetime import date
 
 def handler(event, context):
     nombre_archivo = event["body"]
@@ -55,6 +56,7 @@ def obtener_archivo_s3(nombre_archivo):
                 workbook = Workbook()
                 sheet = workbook.active
                 sheet["A1"] = f"Orden de compra de:{cell.value}"
+                sub_inventario = cell.value
                 res = buscar_base_datos(cell.value)
 
             elif(column == 2):
@@ -71,6 +73,7 @@ def obtener_archivo_s3(nombre_archivo):
             workbook.save(filename="/tmp/"+titulo+".xlsx")
             try:
                 upload_file(("/tmp/"+titulo+".xlsx"),"m2crowdoscar","ordenes/ordenesFinales/"+titulo+".xlsx")
+                update_ordenes(sub_inventario,f"https://m2crowdoscar.s3.us-west-2.amazonaws.com/ordenes/ordenesFinales/{titulo}.xlsx")
             except:
                 pass
         else:
@@ -118,3 +121,24 @@ def buscar_base_datos(subinventario):
         exist_file = False        
 
     return exist_file
+
+def update_ordenes(sub_inventario,archivo):
+    client = boto3.client('dynamodb')
+    today = date.today()
+    s_today = str(today)
+    valor = {"M": 
+    {
+    "dia":{"S":s_today},
+    "archivo":{"S":archivo}
+    }} 
+
+    response = client.update_item(
+        TableName="Almacenes",
+        Key={
+            'sub_inventario':{"S":sub_inventario}
+    },
+        UpdateExpression="SET ordenes = list_append(ordenes, :i)",
+        ExpressionAttributeValues={
+            ":i": {"L":[valor]}
+        }
+    )

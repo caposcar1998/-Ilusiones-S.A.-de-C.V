@@ -38,7 +38,7 @@ export default function Ordenes() {
 
     function crearRecepcionOrdenes(nombreOrden){
 
-        axios.post(url+"/recepcion",nombreOrden).then(res => console.log(res))
+        axios.post(url+"/ordenes",nombreOrden).then(res => console.log(res))
         
     }
 
