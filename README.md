@@ -4,7 +4,7 @@ La empresa Ilusiones S.A. de C.V. vende equipos celulares y necesita realizar co
 a través de 2 archivos. Este sistema busca resolver la problematica de esta empresa.
 
 
-## Instalando el proyecto
+## Instalaciones necesarias
 
 - [AmplifyCli](https://docs.amplify.aws/cli/start/install/)
 - [Python 3.8](https://www.python.org/downloads/)
