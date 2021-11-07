@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "crearOrdenCompra",
+            "recepcionmercancia",
             {
               "Fn::Join": [
                 "",
                 [
-                  "crearOrdenCompra",
+                  "recepcionmercancia",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ilusionessadecvLambdaRolefc0e8c98",
+            "ilusionessadecvLambdaRolec476dc50",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ilusionessadecvLambdaRolefc0e8c98",
+                  "ilusionessadecvLambdaRolec476dc50",
                   "-",
                   {
                     "Ref": "env"
@@ -160,13 +160,6 @@
                   }
                 ]
               }
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "s3:*"
-              ],
-              "Resource": "*"
             },
             {
               "Effect": "Allow",

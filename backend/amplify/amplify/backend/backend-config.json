@@ -42,6 +42,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "recepcionmercancia": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "api": {
@@ -68,6 +73,14 @@
         {
           "category": "function",
           "resourceName": "crearOrdenCompra",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "recepcionmercancia",
           "attributes": [
             "Name",
             "Arn"

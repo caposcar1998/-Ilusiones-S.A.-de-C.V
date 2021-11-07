@@ -5,7 +5,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import Snack from '../generic/Snack';
 
-const url = "https://81zuqkns90.execute-api.us-west-2.amazonaws.com/staging"
+const url = process.env.REACT_APP_URL_PROJECT
 
 export default function CAlmacenes() {
 

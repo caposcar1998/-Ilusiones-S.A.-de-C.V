@@ -30,5 +30,41 @@
         }
       }
     }
+  },
+  "devo": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ilusionessadecv-devo-125647-authRole",
+      "UnauthRoleArn": "arn:aws:iam::477287708544:role/amplify-ilusionessadecv-devo-125647-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::477287708544:role/amplify-ilusionessadecv-devo-125647-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
+      "UnauthRoleName": "amplify-ilusionessadecv-devo-125647-unauthRole",
+      "StackName": "amplify-ilusionessadecv-devo-125647",
+      "StackId": "arn:aws:cloudformation:us-west-2:477287708544:stack/amplify-ilusionessadecv-devo-125647/4b433360-3f33-11ec-be09-062931ca6267",
+      "AmplifyAppId": "d2uwihth8di4wr"
+    },
+    "categories": {
+      "function": {
+        "crearAlmacen": {
+          "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
+          "s3Key": "amplify-builds/crearAlmacen-696a7954516d584e4764-build.zip"
+        },
+        "todosLayouts": {
+          "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
+          "s3Key": "amplify-builds/todosLayouts-417846635952564d6d2b-build.zip"
+        },
+        "crearOrdenCompra": {
+          "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
+          "s3Key": "amplify-builds/crearOrdenCompra-7346584934506c354543-build.zip"
+        },
+        "recepcionmercancia": {
+          "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
+          "s3Key": "amplify-builds/recepcionmercancia-424359692f3970524466-build.zip"
+        }
+      },
+      "auth": {
+        "ilusionessadecv93c9bee2": {}
+      }
+    }
   }
 }
