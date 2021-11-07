@@ -33,7 +33,7 @@ export default function BTable({tituloUno,tituloDos,rows}) {
               <TableCell component="th" scope="row">
                 {row["sub_inventario"]["S"]}
               </TableCell>
-              <TableCell align="right">{["nombre"]["S"]}</TableCell>
+              <TableCell align="right">{row["nombre"]["S"]}</TableCell>
             </TableRow>
           ))}
         </TableBody>

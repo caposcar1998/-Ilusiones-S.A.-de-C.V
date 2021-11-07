@@ -60,6 +60,10 @@
         "recepcionmercancia": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
           "s3Key": "amplify-builds/recepcionmercancia-68497451466d70765576-build.zip"
+        },
+        "getalmacen": {
+          "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
+          "s3Key": "amplify-builds/getalmacen-513050445971736e7941-build.zip"
         }
       },
       "auth": {
