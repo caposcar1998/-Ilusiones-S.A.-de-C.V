@@ -47,7 +47,7 @@
       "function": {
         "crearAlmacen": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
-          "s3Key": "amplify-builds/crearAlmacen-696a7954516d584e4764-build.zip"
+          "s3Key": "amplify-builds/crearAlmacen-3676432f597a766a354c-build.zip"
         },
         "todosLayouts": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
@@ -55,11 +55,11 @@
         },
         "crearOrdenCompra": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
-          "s3Key": "amplify-builds/crearOrdenCompra-7346584934506c354543-build.zip"
+          "s3Key": "amplify-builds/crearOrdenCompra-4238304f7a5075537645-build.zip"
         },
         "recepcionmercancia": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
-          "s3Key": "amplify-builds/recepcionmercancia-424359692f3970524466-build.zip"
+          "s3Key": "amplify-builds/recepcionmercancia-68497451466d70765576-build.zip"
         }
       },
       "auth": {
