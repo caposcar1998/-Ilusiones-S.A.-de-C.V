@@ -9,6 +9,10 @@ a través de 2 archivos. Este sistema busca resolver la problematica de esta emp
 - [AmplifyCli](https://docs.amplify.aws/cli/start/install/)
 - [Python 3.8](https://www.python.org/downloads/)
 - [React](https://es.reactjs.org/)
+- Archivo tipo .env con las siguientes variables (estas te las dara tu admin):
+    - AMAZON_ID
+    - AMAZON_SECRET_KEY
+    - URL_PROJECT
 
 
 
@@ -32,7 +36,7 @@ In the project directory, you can run:
 
 ### `amplify status`
 
-revisa el status de tu stack
+Revisa el status de tu stack
 
 ### `amplify pull`
 
