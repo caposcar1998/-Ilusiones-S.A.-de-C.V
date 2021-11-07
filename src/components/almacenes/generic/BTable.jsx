@@ -27,13 +27,13 @@ export default function BTable({tituloUno,tituloDos,rows}) {
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.sub_inventario}
+              key={["sub_inventario"]["S"]}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.sub_inventario}
+                {row["sub_inventario"]["S"]}
               </TableCell>
-              <TableCell align="right">{row.nombre}</TableCell>
+              <TableCell align="right">{row["nombre"]["S"]}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -31,6 +31,14 @@
                 "open": true
             },
             "policyResourceName": "/recepcion"
+        },
+        {
+            "name": "/almaceness",
+            "lambdaFunction": "getalmacen",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/almaceness"
         }
     ],
     "resourceName": "apiIlusiones",
@@ -47,13 +55,16 @@
         },
         {
             "lambdaFunction": "recepcionmercancia"
+        },
+        {
+            "lambdaFunction": "getalmacen"
         }
     ],
     "privacy": {
         "auth": 0,
         "unauth": 0,
-        "authRoleName": "amplify-amplify571baa093c814-staging-04738-authRole",
-        "unAuthRoleName": "amplify-amplify571baa093c814-staging-04738-unauthRole"
+        "authRoleName": "amplify-ilusionessadecv-devo-125647-authRole",
+        "unAuthRoleName": "amplify-ilusionessadecv-devo-125647-unauthRole"
     },
     "dependsOn": [
         {
@@ -87,7 +98,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getalmacen",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "7c47edd1"
+    "uuid": "afcb93fa"
 }

@@ -47,6 +47,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "getalmacen": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "api": {
@@ -81,6 +86,14 @@
         {
           "category": "function",
           "resourceName": "recepcionmercancia",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "getalmacen",
           "attributes": [
             "Name",
             "Arn"
