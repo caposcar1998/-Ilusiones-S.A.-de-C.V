@@ -34,7 +34,7 @@ export default function Home() {
                 </Grid>
                 <Grid item xs={6}>
                     <Grid container   alignItems="center"justifyContent="center">
-                        <CardOne imagen={urlFoto+"inventario.png"} titulo="Inventario" descripcion="Aqui podras hacer consultas a tu inventario total" accion={() => redireccionar("/")} boton= "Ir"/>
+                        <CardOne imagen={urlFoto+"inventario.png"} titulo="Inventario" descripcion="Aqui podras hacer consultas a tu inventario total" accion={() => redireccionar("/inventario")} boton= "Ir"/>
                     </Grid>
                 </Grid>
                 </Grid>
