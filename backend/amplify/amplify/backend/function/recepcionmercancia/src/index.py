@@ -28,14 +28,15 @@ def handler(event, context):
                 column = column + 1
             else:
                 column = column + 1
+
                 sub_inventario = sheet.cell(column=1,row=column+1).value
-                nombre = sheet.cell(column=2,row=column+1).value
+                print(sub_inventario)
                 modelo = sheet.cell(column=3,row=column+1).value
                 imei = sheet.cell(column=4,row=column+1).value
                 folio = sheet.cell(column=5,row=column+1).value
                 if(sub_inventario != None):
                     try:
-                        print(sub_inventario)
+                        print("entra")
                         update_almacen(sub_inventario,modelo,imei,folio)
                     except Exception as e:
                         print(e)

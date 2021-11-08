@@ -15,8 +15,9 @@ const myBucket = new AWS.S3({
 })
 
 
-export async function uploadFile(file)  {
-    
+export  function uploadFile(file)  {
+    return new Promise(resolve => {
+        setTimeout(() => {
     const params = {
         ACL: 'public-read',
         Body: file,
@@ -31,4 +32,7 @@ export async function uploadFile(file)  {
         .send((err) => {
             if (err) console.log(err)
         })
+        resolve('resolved');
+    }, 4000);
+});
 }

@@ -51,7 +51,7 @@ export default function TabBusqueda({originalRows}) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {originalRows.map((row) => (
                 <TableRow key={row["M"]["Imei"]["S"]}>
                   <TableCell component="th" scope="row">
                   {row["M"]['Imei']["S"]}

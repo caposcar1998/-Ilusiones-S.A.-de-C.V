@@ -16,9 +16,9 @@ export default function Ordenes() {
         setArchivo(event.target.files[0])
     }
 
-    function subirArchivo(){
+    async function subirArchivo(){
         
-        uploadFile(archivo).then(res =>{
+        await uploadFile(archivo)
             console.log(archivo["name"])
             crearRecepcionOrdenes(archivo["name"])
             setOpen(true)
@@ -26,14 +26,7 @@ export default function Ordenes() {
             setTimeout(() => {
                 setOpen(false)
               }, 3000);
-        }).catch(e =>{
-            setOpen(true)
-            setMensaje("Error al subir el archivo")
-            setTimeout(() => {
-                setOpen(false)
-              }, 3000);    
-        })
-
+         
     }
 
     function crearRecepcionOrdenes(nombreOrden){
