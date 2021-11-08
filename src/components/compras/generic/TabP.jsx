@@ -54,7 +54,6 @@ export default function TabP() {
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Crear ordenes compra" {...a11yProps(0)} />
           <Tab label="Recepcion mercancia" {...a11yProps(1)} />
-          <Tab label="Sube un archivo de almacenes" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -62,9 +61,6 @@ export default function TabP() {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Recepcion/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Sube un archivo de almacenes
       </TabPanel>
     </Box>
   );

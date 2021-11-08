@@ -51,7 +51,7 @@ export default function Recepcion() {
         <Snack open={open} handleClose={handleClose} mensaje={mensaje}/>
         <Grid container className={"head"} alignItems="center"justifyContent="center">
             <Grid item xs={12}>
-                <Typography variant="h3">Deja tu archivo de compra</Typography>
+                <Typography variant="h3">Deja tu archivo de mercancia</Typography>
             </Grid>
             <Grid item xs={12}>
             <Input type="file" name="file" onChange={onChangeHandler}/>
