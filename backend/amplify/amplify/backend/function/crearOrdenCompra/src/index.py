@@ -16,13 +16,13 @@ def handler(event, context):
     if (res == True):
         obtener_archivo_s3(nombre_archivo)
         return {
-        'statusCode': 200,
+        'statusCode': 201,
         'headers': {
           'Access-Control-Allow-Headers': '*',
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
             },
-        'body': json.dumps('Se sube de forma correcta')}
+        'body': json.dumps('Creado con exito')}
     else:
         return {
         'statusCode': 404,
@@ -42,32 +42,35 @@ def obtener_archivo_s3(nombre_archivo):
         Key="ordenes/"+nombre_archivo
     )
 
-
+    almacen_activo = True
     binary_data = res['Body'].read()
     wb = openpyxl.load_workbook(BytesIO(binary_data),data_only=True)
     ref = wb.active
-    sheet = wb.active
-    for row in sheet.iter_rows():
+    sheet1 = wb.active
+    for row in sheet1.iter_rows():
         column = 1
         titulo = ""
         for cell in row:
-            if(column == 1):
-                titulo = cell.value
-                workbook = Workbook()
-                sheet = workbook.active
-                sheet["A1"] = f"Orden de compra de:{cell.value}"
-                sub_inventario = cell.value
-                res = buscar_base_datos(cell.value)
-
-            elif(column == 2):
-                sheet["A2"] = f"Cliente :{cell.value}"
+            if(sheet1.cell(column=column,row=3) == "CERRADA POR CAMBIO DE LOCAL NO REALIZAR ENVIOS"):
+                print("Uno no pasa")
             else:
+                if(column == 1):
+                    titulo = cell.value
+                    workbook = Workbook()
+                    sheet = workbook.active
+                    sheet["A1"] = f"Orden de compra de:{cell.value}"
+                    sub_inventario = cell.value
+                    res = buscar_base_datos(cell.value)
+
+                elif(column == 2):
+                    sheet["A2"] = f"Cliente :{cell.value}"
+                else:
 
 
-                if((cell.value != None)):
-                    sheet.cell(column=5, row=sheet.max_row+1, value=str(ref.cell(row=1, column=column).value))
-                    sheet.cell(column=6, row=sheet.max_row+1, value=cell.value)             
-            column = column + 1   
+                    if((cell.value != None)):
+                        sheet.cell(column=5, row=sheet.max_row+1, value=str(ref.cell(row=1, column=column).value))
+                        sheet.cell(column=6, row=sheet.max_row+1, value=cell.value)             
+                column = column + 1   
 
         if(res == True):
             workbook.save(filename="/tmp/"+titulo+".xlsx")
@@ -78,7 +81,7 @@ def obtener_archivo_s3(nombre_archivo):
                 pass
         else:
             logging.error("No encontrado en la base de datos")
-        
+            
 
 
 def upload_file(file_name, bucket, object_name=None):

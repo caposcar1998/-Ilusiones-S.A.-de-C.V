@@ -55,11 +55,11 @@
         },
         "crearOrdenCompra": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
-          "s3Key": "amplify-builds/crearOrdenCompra-4238304f7a5075537645-build.zip"
+          "s3Key": "amplify-builds/crearOrdenCompra-66683256766c68583637-build.zip"
         },
         "recepcionmercancia": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
-          "s3Key": "amplify-builds/recepcionmercancia-68497451466d70765576-build.zip"
+          "s3Key": "amplify-builds/recepcionmercancia-384c432b5a47386c6d66-build.zip"
         },
         "getalmacen": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
