@@ -35,7 +35,7 @@ def insertar_a_almacenes(client,nombre,subinventario):
     except Exception as e:
         print(e)
 
-        
+    print(len(resultado)) 
     if(len(resultado) >=1 ):
        return {"codigo":404, "mensaje":"Este registro ya existe en la base de datos"} 
     else:

@@ -29,23 +29,33 @@ export default function CAlmacenes() {
     function activarAlerta(response){
         setOpen(true)
         setMensaje(response)
-        console.log(response["data"])
         setTimeout(() => {
             setOpen(false)
           }, 3000);
     }
 
 
+
+
     function crearAlmacen(){
         console.log(clave)
         console.log(nombre)
         const body = {"nombre":nombre, "subinventario":clave}
-        axios.post(url+"/almacen",body).then(response => activarAlerta(response))
+        axios.post(url+"/almacen",body).then(response => activarAlerta("Creado con exito"))
+        .catch(function (error) {activarAlerta(error.toString())})
+        .then(() => {reiniciarVaiables()} )
+        
+        
+    }
+
+    function reiniciarVaiables(){
+        setNombre("")
+        setClave("")
     }
 
     return(
         <>
-        <Snack open={open} handleClose={handleClose} mensaje="Creado con exito"/>
+        <Snack open={open} handleClose={handleClose} mensaje={mensaje}/>
         <Grid  >
         <Box
         >

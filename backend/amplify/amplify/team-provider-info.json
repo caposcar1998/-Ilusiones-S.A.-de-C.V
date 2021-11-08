@@ -47,7 +47,7 @@
       "function": {
         "crearAlmacen": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
-          "s3Key": "amplify-builds/crearAlmacen-3676432f597a766a354c-build.zip"
+          "s3Key": "amplify-builds/crearAlmacen-37787833542b6b5a4c61-build.zip"
         },
         "todosLayouts": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
@@ -63,7 +63,7 @@
         },
         "getalmacen": {
           "deploymentBucketName": "amplify-ilusionessadecv-devo-125647-deployment",
-          "s3Key": "amplify-builds/getalmacen-513050445971736e7941-build.zip"
+          "s3Key": "amplify-builds/getalmacen-497053576d307664714b-build.zip"
         }
       },
       "auth": {
