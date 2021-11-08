@@ -40,7 +40,12 @@ export default function CAlmacenes() {
         console.log(clave)
         console.log(nombre)
         const body = {"nombre":nombre, "subinventario":clave}
-        axios.post(url+"/almacen",body).then(response => activarAlerta(response))
+        axios.post(url+"/almacen",body).then(response => activarAlerta(response)).then(() => {reiniciarVaiables()} )
+    }
+
+    function reiniciarVaiables(){
+        setNombre("")
+        setClave("")
     }
 
     return(
