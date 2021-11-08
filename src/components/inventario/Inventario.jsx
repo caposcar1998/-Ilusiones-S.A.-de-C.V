@@ -4,7 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import axios from 'axios';
 import TabBusqueda from './TabBusqueda';
 
@@ -29,19 +29,23 @@ export default function Inventario() {
     const handleChange = (event) => {
         setAlmacen(event.target.value);
         console.log(event.target.value)
+
+    };
+
+    function buscar(){
         let body = {
-            "subinventario": "IDBCA00009"
+            "subinventario": almacen
         }
         axios.post("https://nwaqd8qp0b.execute-api.us-west-2.amazonaws.com/devo/almaceness",body).then(response => setProductos(...productos,response["data"]["Item"]["inventario"]["L"]))
         console.log(productos)
-    };
+    }
     return(
     <Grid container spacing={4}>
         
         <Grid item xs={12}>
         <h1>.</h1>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={8}>
             <FormControl fullWidth >
                 <InputLabel id="demo-simple-select-label">Almacenes</InputLabel>
                     <Select
@@ -58,6 +62,7 @@ export default function Inventario() {
             </FormControl>
 
         </Grid>
+        <Grid item xs={4}><Button onClick={buscar}>Buscar</Button></Grid>
         <Grid item xs={12}>
             {almacen != null ?  <TabBusqueda originalRows={productos}/> :<h1>Selecciona un almacen</h1> }
         </Grid>
