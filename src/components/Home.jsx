@@ -27,12 +27,7 @@ export default function Home() {
                         <CardOne imagen={urlFoto+"oc2.jpg"} titulo="Ordenes compra" descripcion="Aqui podras realizar tus operaciones CRUD de las ordenes de compra" accion={() => redireccionar("/compras")} boton= "Ir"/>
                     </Grid>
                 </Grid>
-                <Grid item xs={6}>  
-                    <Grid container   alignItems="center"justifyContent="center">
-                        <CardOne imagen={urlFoto+"celular.jpg"} titulo="Productos" descripcion="Aqui podras realizar tus operaciones CRUD de productos" accion={() => redireccionar("/")} boton= "Ir"/>
-                    </Grid>
-                </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     <Grid container   alignItems="center"justifyContent="center">
                         <CardOne imagen={urlFoto+"inventario.png"} titulo="Inventario" descripcion="Aqui podras hacer consultas a tu inventario total" accion={() => redireccionar("/inventario")} boton= "Ir"/>
                     </Grid>
