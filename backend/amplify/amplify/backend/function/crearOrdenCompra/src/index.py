@@ -72,16 +72,16 @@ def obtener_archivo_s3(nombre_archivo):
                         sheet.cell(column=6, row=sheet.max_row+1, value=cell.value)             
                 column = column + 1   
 
-    if(res == True):
-        workbook.save(filename="/tmp/"+titulo+".xlsx")
-        try:
-            upload_file(("/tmp/"+titulo+".xlsx"),"m2crowdoscar","ordenes/ordenesFinales/"+titulo+".xlsx")
-            update_ordenes(sub_inventario,f"https://m2crowdoscar.s3.us-west-2.amazonaws.com/ordenes/ordenesFinales/{titulo}.xlsx")
-        except:
-            pass
-    else:
-        logging.error("No encontrado en la base de datos")
-    
+        if(res == True):
+            workbook.save(filename="/tmp/"+titulo+".xlsx")
+            try:
+                upload_file(("/tmp/"+titulo+".xlsx"),"m2crowdoscar","ordenes/ordenesFinales/"+titulo+".xlsx")
+                update_ordenes(sub_inventario,f"https://m2crowdoscar.s3.us-west-2.amazonaws.com/ordenes/ordenesFinales/{titulo}.xlsx")
+            except:
+                pass
+        else:
+            logging.error("No encontrado en la base de datos")
+            
 
 
 def upload_file(file_name, bucket, object_name=None):
