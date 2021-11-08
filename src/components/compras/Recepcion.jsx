@@ -16,23 +16,17 @@ export default function Recepcion() {
         setArchivo(event.target.files[0])
     }
 
-    function subirArchivo(){
+    async function subirArchivo(){
         
-        uploadFile(archivo).then(res =>{
-            console.log(archivo["name"])
-            recepcionPedidos(archivo["name"])
-            setOpen(true)
-            setMensaje("Se sube el archivo")
-            setTimeout(() => {
-                setOpen(false)
-              }, 3000);
-        }).catch(e =>{
-            setOpen(true)
-            setMensaje("Error al subir el archivo")
-            setTimeout(() => {
-                setOpen(false)
-              }, 3000);    
-        })
+        await uploadFile(archivo)
+        console.log(archivo["name"])
+        recepcionPedidos(archivo["name"])
+        setOpen(true)
+        setMensaje("Se sube el archivo")
+        setTimeout(() => {
+            setOpen(false)
+            }, 3000);
+    
 
     }
 
