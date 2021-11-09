@@ -33,6 +33,7 @@ export default function Inventario() {
     };
 
     function buscar(){
+        setProductos([])
         let body = {
             "subinventario": almacen
         }
@@ -64,7 +65,7 @@ export default function Inventario() {
         </Grid>
         <Grid item xs={4}><Button onClick={buscar}>Buscar</Button></Grid>
         <Grid item xs={12}>
-            {almacen != null ?  <TabBusqueda originalRows={productos}/> :<h1>Selecciona un almacen</h1> }
+            {productos.length > 0 ?  <TabBusqueda originalRows={productos}/> :<h1>Selecciona un almacen</h1> }
         </Grid>
 
         
